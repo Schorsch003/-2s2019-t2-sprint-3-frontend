@@ -38,7 +38,7 @@
     input_email.addEventListener('input', event => {
         event.preventDefault();
    //     console.log(input_email.value.length);
-        if(input_email.value.length > 4){
+        if(input_email.value.length > 4 && input_email.value.includes('@')&& input_email.value.includes('.')){
         botao.removeAttribute('disabled');
         console.log("botao liberado");
         botao.style.backgroundColor = '#ECDDF3';

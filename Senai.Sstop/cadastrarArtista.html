@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <title>SStop - API</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-10">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Cadastrar</span>
+                    </div>
+                    <input type="text" id="nomeArtista" class="form-control" placeholder="Nome do Artista"
+                        aria-label="nome" aria-describedby="basic-addon1" />
+                </div>
+                <div class="select">
+                    <select class="custom-select" id="selectEstilo" required>
+                        <option selected>Selecione o estilo musical do artista</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <input class="btn btn-primary" type="submit" value="Cadastrar" id="btnCadastrar" />
+            </div>
+        </div>
+        <script>
+            const botaoCadastrar = document.querySelector('#btnCadastrar');
+            const nomeArtista = document.querySelector('#nomeArtista');
+            const selectEstilo = document.querySelector('#selectEstilo');
+            let url = 'http://localhost:5000/api/estilos';
+            let idEstilo;
+
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data)
+                    buildSelect(data)})
+                .catch(error => console.log(error));
+
+            function buildSelect(estilos) {
+                estilos.forEach(element => {
+                    let option_nome = document.createElement('option');
+                    option_nome.textContent = element.nome;
+                    selectEstilo.appendChild(option_nome);
+                })
+            }
+
+            botaoCadastrar.addEventListener('click',event  =>{
+            
+            let estilo = {
+                "idEstilo": ,
+                "nome":selectEstilo.value
+            }
+
+            console.log(estilo.idEstilo,estilo.nome);
+
+            xhr = new XMLHttpRequest();
+
+            let objJson = {
+                "nome": nomeArtista.value,
+                "estiloId": 0,
+                "estiloMusical":{
+                    "idEstilo":estilo.idEstilo,
+                    "nome":estilo.nome
+                }
+            }
+            //console.log(objJson);
+            });
+
+        </script>
+</body>
+
+</html>

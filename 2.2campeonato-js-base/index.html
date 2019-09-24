@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+
+<head>
+
+    <title>Exercícios</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        let times = [{
+            nome: "Liverpool",
+            vitorias: 23,
+            empates: 6,
+            derrotas:1,
+            golsproprio:70,
+            golscontra:52
+        }, {
+            nome: "City",
+            vitorias: 24,
+            empates: 2,
+            derrotas:4,
+            golsproprio:79,
+            golscontra:21
+        }, {
+            nome: "Tottenhan",
+            vitorias: 20,
+            empates: 1,
+            derrotas:9,
+            golsproprio:57,
+            golscontra:32
+        }, {
+            nome: "Arsenal",
+            vitorias: 18,
+            empates: 6,
+            derrotas:6,
+            golsproprio:63,
+            golscontra:39
+        }, {
+            nome: "Manchester United",
+            vitorias: 17,
+            empates: 7,
+            derrotas:6,
+            golsproprio:58,
+            golscontra:40
+        }, {
+            nome: "Chelsea",
+            vitorias: 17,
+            empates: 6,
+            derrotas:7,
+            golsproprio:50,
+            golscontra:33
+        }];
+ 
+        let vitoriasMaiorQ20 = times.filter(x => x.vitorias > 20)
+        //console.log(vitoriasMaiorQ20);
+
+        let nomes = times.map(x => x.nome);
+        //console.log(nomes);
+
+        times.push( {nome:'Wolves', vitorias:12,empates:8,derrotas:10,golsproprio:38,golscontra:36})
+
+        let qntdJogos = times.map(x => x.vitorias + x.empates + x.derrotas);
+
+        let saldoGols = times.map(x => x.golsproprio - x.golscontra);
+
+        //console.log(qntdJogos);
+
+        let fullStatus = [];
+
+        for(let i = 0; i < times.length; i++){
+            fullStatus.push( 
+                { nome:times[i].nome,
+                 quantidadeJogos:qntdJogos[i],
+                 vitorias:times[i].vitorias,
+                 empates: times[i].empates,
+                 derrotas:times[i].derrotas,
+                 golsAFavor:times[i].golsproprio, 
+                 golsContra:times[i].golscontra,
+                 saldoGols: saldoGols[i]    
+                 }      
+            );
+        };
+
+        //console.log(fullStatus);
+
+        let jogosCamp = qntdJogos.reduce((total, x) => x + total );
+        //console.log(jogosCamp);
+
+   </script>
+
+</body>
+
+</html>

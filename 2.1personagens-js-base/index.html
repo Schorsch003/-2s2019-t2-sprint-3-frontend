@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Exercícios</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        let personagens = [{
+            nome: "Capitão Cometa",
+            dataAparicao: 1951,
+            editora: "DC"
+        }, {
+            nome: "Lanterna Verde",
+            dataAparicao: 1940,
+            editora: "DC"
+        }, {
+            nome: "Ciborgue",
+            dataAparicao: 1980,
+            editora: "DC"
+        }, {
+            nome: "Homem Aranha",
+            dataAparicao: 1962,
+            editora: "Marvel"
+        }, {
+            nome: "Homem de Ferro",
+            dataAparicao: 1963,
+            editora: "Marvel"
+        }, {
+            nome: "Capitão América",
+            dataAparicao: 1940,
+            editora: "Marvel"
+        }];
+        let dt = new Date();
+
+        let marvelChars = personagens.filter(x => x.editora == 'Marvel');
+        //console.log(marvelChars);
+
+        let apOver1950 = personagens.filter(x => x.dataAparicao > 1950);
+        //console.log(apOver1950);    
+
+        let nomes = personagens.map(x => x.nome);
+        //console.log(nomes);
+          
+        personagens.push( {nome: 'Capitã Marvel', dataAparicao: 1977,editora:'Marvel'});
+        //console.log(personagens.length);
+
+        let idades = personagens.map(x => dt.getFullYear() - x.dataAparicao);
+        let somaIdades = idades.reduce((total,element) => total + element);
+        console.log(somaIdades);
+
+        let personagensEIdades = personagens.map(x => {
+            return {nome: x.nome,idade:dt.getFullYear() - x.dataAparicao}
+        });
+
+        console.log(personagensEIdades);
+
+
+
+    </script>
+
+</body>
+
+</html>

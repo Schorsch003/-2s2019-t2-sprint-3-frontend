@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>InLock - Personagens</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <table id="tabela-lista">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+
+        <tbody id="tabela-lista-corpo"></tbody>
+    </table>
+
+    <script>
+        const tabela = document.querySelector("#tabela-lista-corpo");
+        
+        let URL = 'https://salty-atoll-57329.herokuapp.com/personagens';
+        
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => construirTabela(data))
+            .catch(erro => console.log(erro));
+        
+        function construirTabela(data){
+            data.forEach(x => {
+                let tr = document.createElement('tr');
+                const tdId = document.createElement('td'); 
+                const tdNome = document.createElement('td');
+                const tdImagem = document.createElement('td');
+                const img = document.createElement('img');
+                tdId.textContent = x.id;
+                tdNome.innerText = x.nome;
+                img.src = x.urlImagem;
+                img.setAttribute('style','width:80px')
+
+
+                tdImagem.appendChild(img);
+                tr.appendChild(tdId);
+                tr.appendChild(tdNome);
+                tr.appendChild(tdImagem);
+
+                tabela.appendChild(tr);
+                
+            });
+        }
+
+    </script>
+
+</body>
+</html>

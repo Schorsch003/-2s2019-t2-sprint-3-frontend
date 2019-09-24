@@ -70,9 +70,7 @@
     pets.push({nome:'doguinho', idade:13, tipoPet:'cachorro'})
     //console.log(pets);
 
-    let cachorros = pets.filter(x => {
-        return x.tipoPet == 'cachorro';
-    });
+    let cachorros = pets.filter(x => x.tipoPet == 'cachorro');
 
     //console.log(cachorros.length);
     let idades = pets.map(x => {

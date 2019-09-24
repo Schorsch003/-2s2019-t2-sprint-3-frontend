@@ -54,32 +54,52 @@
         tipoPet: "gato"
     }];
 
+    //1. Filtrar por animais do tipo "Gato"
+
     let gatos = pets.filter(x => {
         return x.tipoPet == "gato"
     });
+
+    //2. Filtrar por animais de idade superior à 7
 
     let older = pets.filter(x => {
         return x.idade > 7;
     });
 
+    //3. Listar apenas os nomes dos animais
+
     let nomes = pets.map(x => {
         return x.nome;
     });
 
-    //console.log(pets);
+    //4. Adicionar um animal 
+
     pets.push({nome:'doguinho', idade:13, tipoPet:'cachorro'})
-    //console.log(pets);
-
+    
+    //5. Filtrar os animais do tipo cachorro
+    
     let cachorros = pets.filter(x => x.tipoPet == 'cachorro');
-
-    //console.log(cachorros.length);
+    
+    //6. Resgatar as idades dos animais em um array separado
+    
     let idades = pets.map(x => {
         return x.idade
     });
     
+    
+    //7. Somar as idades dos animais
+    
     let somaIdades = idades.reduce((total, element) => total + element);
+    
+    //8. Testes via console
 
-    console.log(somaIdades);
+    //console.log(somaIdades);
+
+    //console.log(pets);
+    
+    //console.log(pets);
+
+    //console.log(cachorros.length);
 
     //console.log(nomes);
 

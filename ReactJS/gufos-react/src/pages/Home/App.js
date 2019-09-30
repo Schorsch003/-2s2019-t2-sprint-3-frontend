@@ -10,6 +10,9 @@ import '../../assets/css/style.css';
 //imagem
 import logo from '../../assets/img/icon-login.png';
 
+//components
+import Footer from '../../components/Rodape.js'
+
 function App() {
   return (
     <div className="App">
@@ -99,14 +102,7 @@ function App() {
             </div>
           </section>
         </main>
-
-        <footer className="rodapePrincipal">
-          <section className="rodapePrincipal-patrocinadores">
-            <div className="container">
-              <p>Escola SENAI de Informática - 2019</p>
-            </div>
-          </section>
-        </footer>
+        <Footer />        
       </div>
     </div>
   );

@@ -16,25 +16,43 @@ class Categorias extends Component {
 				// { idCategoria: 1, nome: 'Design' },
 				// { idCategoria: 2, nome: 'Jogos' },
 				// { idCategoria: 3, nome: 'Meetup' }
-			]
+			],
+			nome: ""
 		}
 	}
 
 
 	componentDidMount() {
-		fetch('http://192.168.7.85:5000/api/categorias')
-			.then(x => x.json())
-			.then(x => this.setState({lista:x}))
+		this.listarCategorias();
 	}
 
 
 
-	adicionaItem = (event) => {
+	cadastrarCategoria = (event) => {
 		event.preventDefault();
-		let lista = { idCategoria: 4, nome: 'Nova Categoria' };
-		let listaState = this.state.lista;
-		listaState.push(lista);
-		this.setState({ lista: listaState })
+
+		fetch('http://192.168.7.85:5000/api/categorias', {
+			method: 'POST',
+			body: JSON.stringify({ nome: this.state.nome }),
+			headers: {
+				"Content-Type": "application/json"
+			},
+
+		})
+			.then(response => this.listarCategorias())
+			.catch(error => console.log(error))
+
+	}
+
+	listarCategorias = () => {
+		fetch('http://192.168.7.85:5000/api/categorias')
+			.then(x => x.json())
+			.then(x => this.setState({ lista: x }))
+	}
+
+	nomeCategoria = (event) => {
+		this.setState({ nome: event.target.value })
+
 	}
 
 	render() {
@@ -79,18 +97,19 @@ class Categorias extends Component {
 							<h2 className="conteudoPrincipal-cadastro-titulo">
 								Cadastrar Categoria
                   </h2>
-							<form>
+							<form onSubmit={this.cadastrarCategoria}>
 								<div className="container">
 									<input
 										type="text"
 										className="class__categoria"
 										id="input__categoria"
 										placeholder="tipo do evento"
+										value={this.state.nome}
+										onChange={this.nomeCategoria}
 									/>
 									<button
 										id="btn__cadastrar"
 										className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro"
-										onClick={this.adicionaItem}
 									>
 										Cadastrar
                       </button>

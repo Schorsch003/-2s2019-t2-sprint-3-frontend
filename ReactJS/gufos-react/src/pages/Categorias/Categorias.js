@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import reactdom from 'react-dom'
 
 //imagem
 import logo from '../../assets/img/icon-login.png';
@@ -123,7 +124,6 @@ class Categorias extends Component {
 			</div>
 		);
 	}
-
 
 }
 

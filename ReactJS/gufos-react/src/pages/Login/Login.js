@@ -55,7 +55,7 @@ export default class Login extends Component {
                 <div className="item__login">
                     <div className="row">
                         <div className="item">
-                            <img src={logo} className="icone__login" />
+                            <img src={logo} className="icone__login" alt=""/>
                         </div>
                         <div className="item" id="item__title">
                             <p className="text__login" id="item__description">

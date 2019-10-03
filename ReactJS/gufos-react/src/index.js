@@ -4,6 +4,7 @@ import './index.css';
 
 import App from './pages/Home/App.js';
 import Categorias from './pages/Categorias/Categorias.js';
+import Eventos from './pages/Eventos/Eventos.js';
 import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado.js';
 import Login from './pages/Login/Login.js';
 
@@ -33,6 +34,7 @@ const routing = (
             <Switch>
                 <Route exact path='/' component={App} />
                 <RotaPrivada path='/categorias' component={Categorias} />
+                <RotaPrivada path='/eventos' component={Eventos} />
                 <Route exact path='/login' component={Login} />
                 <Route component={NaoEncontrado} />
             </Switch>

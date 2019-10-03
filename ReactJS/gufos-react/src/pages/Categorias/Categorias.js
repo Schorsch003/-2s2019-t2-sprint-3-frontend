@@ -1,11 +1,11 @@
 import React, { Component } from "react"
-import reactdom from 'react-dom'
 
 //imagem
 import logo from '../../assets/img/icon-login.png';
 
 //components
 import Footer from '../../components/Rodape.js'
+import Titulo from '../../components/Titulo'
 
 
 class Categorias extends Component {
@@ -61,7 +61,8 @@ class Categorias extends Component {
 			<div>
 				<header className="cabecalhoPrincipal">
 					<div className="container">
-						<img src={logo} />
+						
+						<img src={logo} alt=""/>
 
 						<nav className="cabecalhoPrincipal-nav">
 							Administrador
@@ -71,7 +72,7 @@ class Categorias extends Component {
 
 				<main className="conteudoPrincipal">
 					<section className="conteudoPrincipal-cadastro">
-						<h1 className="conteudoPrincipal-cadastro-titulo">Categorias</h1>
+						<Titulo titulo="Categorias"/>
 						<div className="container" id="conteudoPrincipal-lista">
 							<table id="tabela-lista">
 								<thead>

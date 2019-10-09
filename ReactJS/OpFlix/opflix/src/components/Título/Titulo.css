@@ -1,0 +1,8 @@
+.titulo {
+    font-family: 'Bebas Neue';
+    font-size:60px;
+    color:red;
+    -webkit-text-stroke: 1px #000;
+    text-align: center;
+    margin-top:0.1em
+}

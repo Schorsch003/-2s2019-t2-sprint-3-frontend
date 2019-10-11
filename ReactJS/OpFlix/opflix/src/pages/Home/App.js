@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './../../components/Header/Header'
 import Titulo from './../../components/Título/Titulo'
+import Footer from './../../components/Footer/Footer'
 import './App.css';
 
 
@@ -32,7 +33,7 @@ class App extends Component {
     { console.log(this.state.lancamentos) }
     return (
       <div className="appMain" >
-        <Header item1="Login" item2="Cadastro" redirectTo1="" />
+        <Header item1="Login" item2="Cadastro" redirectTo1="/login" redirectTo2="/cadastro" />
         <Titulo titulo="Lançamentos" />
         <div className="filtros flex">
           <input type="text" placeholder="Buscar Lançamentos" onChange={this.getTituloBusca} />
@@ -66,6 +67,7 @@ class App extends Component {
             </div>
           );
         })}
+        <Footer />
       </div>
     );
   }

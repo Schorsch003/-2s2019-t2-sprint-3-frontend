@@ -1,0 +1,30 @@
+.listas{
+    display:flex;
+    justify-content: space-around;
+}
+
+.Lista {
+    margin-top:2em;
+    text-align: center;
+    height:62.5vh;
+    width:20vw;
+}
+
+.Lista h3 {
+    font-family: 'Bebas Neue';
+    font-size:45px;
+    color:red;
+    -webkit-text-stroke: 1px #000;
+    text-align: center;
+}
+
+.Lista button {
+    font-size:25px;
+    font-family: 'Bebas Neue';
+    color: #000;
+    margin-top:1.5em;
+    width:70%;
+    padding:0.5em 0;  
+    border:1px solid #707070;
+    border-radius: 15px;
+}

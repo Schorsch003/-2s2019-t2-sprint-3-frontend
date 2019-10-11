@@ -1,0 +1,25 @@
+.mainFooter {
+    height:13vh;
+    justify-content: space-between;
+    border-top:1px solid #000;
+}
+
+.infoFooter{
+    margin:3vh 0 3vh 3em ;
+    align-items: center;
+}
+
+#twitterlogo{
+    margin-bottom: 0.5em
+}
+
+.socialFooter img {
+    height: 5em;
+    margin:0 2em;
+    width:5em;
+}
+
+#fblogo{
+    height:6em;
+    width:6em
+}

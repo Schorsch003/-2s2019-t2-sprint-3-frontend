@@ -13,7 +13,8 @@ export default class Header extends Component {
                         <div className="navItems" >
                             <ul className="texto">
                                 <li> < a href={this.props.redirectTo1} className="texto"> {this.props.item1} </a></li >
-                                <li> < a href={this.props.redirectTo1} className="texto" > {this.props.item2} </a></li >
+                                <li> < a href={this.props.redirectTo2} className="texto" > {this.props.item2} </a></li >
+                                <li> <img href={this.props.imgUser} alt=""></img></li>
                             </ul>
                         </div >
                     </nav>

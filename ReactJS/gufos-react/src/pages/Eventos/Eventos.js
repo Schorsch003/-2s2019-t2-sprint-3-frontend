@@ -43,7 +43,7 @@ export default class Eventos extends Component {
         this.setState({ eventoCadastrar: { ...this.state.eventoCadastrar, localizacao: event.target.value } })
     }
     getDataEvento = (event) => {
-        this.setState({ eventoCadastrar: { ...this.state.eventoCadastrar, dataEvento: event.target.value.substr(0,10) } })
+        this.setState({ eventoCadastrar: { ...this.state.eventoCadastrar, dataEvento: event.target.value.substr(0, 10) } })
     }
     getAtivo = (event) => {
         this.setState({ eventoCadastrar: { ...this.state.eventoCadastrar, ativo: event.target.value === 1 ? true : false } })
@@ -60,15 +60,15 @@ export default class Eventos extends Component {
         let evento = this.state.eventoCadastrar;
         console.log(evento);
         Axios.post('http://192.168.7.85:5000/api/eventos', {
-            titulo:this.state.eventoCadastrar.titulo,
-            descricao:this.state.eventoCadastrar.descricao,
-            localizacao:this.state.eventoCadastrar.localizacao,
-            ativo:this.state.eventoCadastrar.ativo,
-            dataEvento:this.state.eventoCadastrar.dataEvento,
-            idCategoria:this.state.eventoCadastrar.idCategoria
+            titulo: this.state.eventoCadastrar.titulo,
+            descricao: this.state.eventoCadastrar.descricao,
+            localizacao: this.state.eventoCadastrar.localizacao,
+            ativo: this.state.eventoCadastrar.ativo,
+            dataEvento: this.state.eventoCadastrar.dataEvento,
+            idCategoria: this.state.eventoCadastrar.idCategoria
         })
-        .then(x => console.log(x))
-        .catch(error => console.log(error))
+            .then(x => console.log(x))
+            .catch(error => console.log(error))
     }
 
     render() {
@@ -104,7 +104,7 @@ export default class Eventos extends Component {
                                         <tr key={x.idEvento}>
                                             <td value={x.idEvento}>{x.idEvento}</td>
                                             <td value={x.titulo}>{x.titulo}</td>
-                                            <td value={x.dataEvento}>{x.dataEvento.substr(0,10)}</td>
+                                            <td value={x.dataEvento}>{x.dataEvento.substr(0, 10)}</td>
                                             <td value={x.ativo}>{(x.ativo) ? 'Sim' : 'Não'}</td>
                                             <td value={x.idCategoriaNavigation.nome}>{x.idCategoriaNavigation.nome}</td>
                                         </tr>
@@ -117,8 +117,8 @@ export default class Eventos extends Component {
                             <div className="container">
 
                                 <input type="text" id="evento__titulo" placeholder="título do evento" onChange={this.getTitulo} />
-                                <input type="text" id="evento__localizacao" placeholder="localização" onChange={this.getLocalizacao}/>
-                                <input type="date" id="evento__data" placeholder="dd/MM/yyyy" onChange={this.getDataEvento}/>
+                                <input type="text" id="evento__localizacao" placeholder="localização" onChange={this.getLocalizacao} />
+                                <input type="date" id="evento__data" placeholder="dd/MM/yyyy" onChange={this.getDataEvento} />
                                 <select id="option__acessolivre" onChange={this.getAtivo}>
                                     <option value="1">Ativo</option>
                                     <option value="0">Desativo</option>

@@ -1,0 +1,47 @@
+.imagemFundo {
+    width:45vw;
+    height:89vh;
+}
+
+.divisoria {
+    transform:rotate(0deg);
+    height:89.9vh;
+    width:10px;
+    background-color:#000;
+}
+
+
+.login form input[type=text] {
+    border:none;
+    text-align:center;
+    margin:1em 1em;
+    font-size:25px;
+    border-bottom:1px solid #808080
+}
+
+.login form input[type=text]::placeholder{
+    color:#DBDBDB;
+}
+
+.login form input[type=submit] {
+    border:1px solid #000;
+    padding:1em 3em;
+    background-color:#FF0000;
+    color:#fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:1em;
+    margin:2em 15%;
+    border-radius:15px;
+}
+
+.login form {
+    margin:6em 45%;
+    display:block;
+    width: 30vw;
+}
+
+.login a p {
+    text-decoration: none;
+    color:#000;
+    margin:2em 0 0 1em;
+}

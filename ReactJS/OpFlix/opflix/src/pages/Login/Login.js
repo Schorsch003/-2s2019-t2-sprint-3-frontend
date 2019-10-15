@@ -11,12 +11,15 @@ export default class Login extends Component {
         this.state = {
             itensListaLogin: ["EMAIL", "SENHA"],
             email: '',
-            senha: ''
+            senha: '',
+            erro: ''
         }
     }
 
     realizarLogin = (event) => {
         event.preventDefault();
+        console.log('entrou')
+
         Axios.post('http://localhost:5000/api/login', {
             email: this.state.email,
             senha: this.state.senha
@@ -25,9 +28,14 @@ export default class Login extends Component {
                 if (x.status === 200) {
                     localStorage.setItem('usuario-opflix', x.data.token);
                     this.props.history.push('/dashboard');
-
-                }
+                    console.log('chegou')
+                } 
             })
+            .catch(error => {
+                this.setState({erro: "Usuário ou senha inválido"});
+                console.log(error);
+            })
+        console.log('saiu')
     }
 
     mudarStateEmail = (event) => {
@@ -52,8 +60,11 @@ export default class Login extends Component {
                         <form>
                             <input type="text" placeholder={this.state.itensListaLogin[0]} onChange={this.mudarStateEmail} />
                             <input type="text" placeholder={this.state.itensListaLogin[1]} onChange={this.mudarStateSenha} />
-                            <input type="submit" value="LOGIN" />
+                            <input type="submit" value="LOGIN" onClick={this.realizarLogin} />
                         </form>
+                        <p className="text__login" style={{ color: "red", textAlign: "center" }}>
+                            {this.state.erro}
+                        </p>
                     </div>
                 </div>
             </div>

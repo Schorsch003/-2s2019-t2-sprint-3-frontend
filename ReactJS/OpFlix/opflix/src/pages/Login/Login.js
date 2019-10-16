@@ -59,7 +59,7 @@ export default class Login extends Component {
                         <a href="/" className="voltarAoMain"><p> Voltar ao menu principal </p></a>
                         <form>
                             <input type="text" placeholder={this.state.itensListaLogin[0]} onChange={this.mudarStateEmail} />
-                            <input type="text" placeholder={this.state.itensListaLogin[1]} onChange={this.mudarStateSenha} />
+                            <input type="password" placeholder={this.state.itensListaLogin[1]} onChange={this.mudarStateSenha} />
                             <input type="submit" value="LOGIN" onClick={this.realizarLogin} />
                         </form>
                         <p className="text__login" style={{ color: "red", textAlign: "center" }}>

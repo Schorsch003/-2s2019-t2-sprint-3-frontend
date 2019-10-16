@@ -1,0 +1,24 @@
+.tabelaLancamentos  {
+    width:90vw;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin:2em 5vw;
+}
+
+.tabelaHeader th {
+    font-size:2em;
+    font-weight: normal;
+    border-bottom: 1px solid #000;
+}
+
+
+.valoresTabela td{
+    height:7vh;
+    border-bottom:1px solid #000;
+    border-right:1px solid #000;
+    text-align: center;
+}
+
+.tabelaInfo {
+    border-right:1px solid #000;
+}

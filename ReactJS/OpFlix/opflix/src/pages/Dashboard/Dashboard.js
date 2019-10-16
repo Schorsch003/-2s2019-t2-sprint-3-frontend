@@ -31,7 +31,7 @@ export default class Dashboard extends Component {
                 <main className="mainDashboard">
                     <Titulo titulo={this.state.stringWelcome} />
                     <div className="listas">
-                        <Lista nome="Lançamentos" />
+                        <Lista nome="Lançamentos" listar="/listarlancamentos"/>
                         <Lista nome="Categorias" />
                         <Lista nome="Usuários" />
                     </div>

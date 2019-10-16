@@ -17,18 +17,16 @@
 }
 
 
-.login form input[type=text] {
+.login form input {
+    color:#DBDBDB;
     border:none;
     text-align:center;
-    color:#DBDBDB;
     margin:2em 1em;
     font-size:25px;
     border-bottom:1px solid #808080
 }
 
-.login form input[type=text]::placeholder{
-    color:#DBDBDB;
-}
+
 
 .login form input[type=submit] {
     border:1px solid #000;

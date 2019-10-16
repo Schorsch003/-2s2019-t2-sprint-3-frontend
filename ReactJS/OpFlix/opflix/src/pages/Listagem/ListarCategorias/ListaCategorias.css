@@ -1,0 +1,23 @@
+.tabelaCategorias  {
+    width:30vw;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin:2em 35%;
+}
+
+.tabelaHeader th {
+    font-size:2em;
+    font-weight: normal;
+    border-bottom: 1px solid #000;
+}
+
+.idsTabela ,.idHeader{
+    border-right:1px solid #000;
+}
+
+
+.valoresTabela td{
+    height:5vh;
+    border-bottom:1px solid #000;
+    text-align: center;
+}

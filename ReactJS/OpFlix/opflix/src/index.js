@@ -10,15 +10,33 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-d
 import Dashboard from './pages/Dashboard/Dashboard';
 
 import * as serviceWorker from './serviceWorker';
+import ListarCategorias from './pages/Listagem/ListarCategorias/ListarCategorias';
+import ListarUsuarios from './pages/Listagem/ListarUsuarios/ListarUsuarios';
+import ListarLancamentos from './pages/Listagem/ListarLancamentos/ListarLancamentos';
+
+const RotaPrivada = ({ component: Component }) => (
+    <Route
+        render={props =>
+            localStorage.getItem('usuario-opflix') !== null ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+                )
+        }
+    />
+)
 
 const routing = (
     <Router>
         <div>
             <Switch>
-                <Route exact path="/" component={App}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route exact path="/" component={App} />
+                <Route path="/login" component={Login} />
+                <RotaPrivada path="/dashboard" component={Dashboard} />
                 <Route path="/cadastro" component={Cadastro} />
+                <RotaPrivada path="/listarcategorias" component={ListarCategorias} />
+                <RotaPrivada path="/listarusuarios" component={ListarUsuarios} />
+                <RotaPrivada path="/listarlancamentos" component={ListarLancamentos} />
             </Switch>
         </div>
     </Router>

@@ -6,8 +6,8 @@ export default class ListaDashboard extends Component {
         return (
             <div className="Lista">
                 <h3> {this.props.nome}</h3>
-                <button href={this.props.listar}> Listar</button>
-                <button to={this.props.cadastrar}> Cadastrar</button>
+                <button> <a href={this.props.listar}> Listar </a></button>
+                <button> <a href={this.props.cadastrar}> Cadastrar </a></button>
             </div>
         );
     }

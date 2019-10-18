@@ -1,0 +1,43 @@
+form input[type=submit] {
+    border:1px solid #000;
+    padding:1em 3em;
+    background-color:#FF0000;
+    color:#fff;
+    font-family: 'Bebas Neue';
+    font-weight: bolder;
+    font-size:1.5em;
+    margin:1em 40%;
+    border-radius:15px;
+}
+
+.col {
+    width:45vw;
+}
+
+.col input, .col input[type="date"], .col input[type="password"] ,form select {
+        width:40%;
+        color:#DBDBDB;
+        border:none;
+        text-align:center;
+        margin: 2em 35%;
+        font-size:25px;
+        border-bottom:1px solid #808080
+}
+
+form select option {
+    color:#000;
+    font-size:15px;
+}
+
+.col input{
+    color:#DBDBDB;
+}
+
+.descricao {
+    width:65%;
+    margin:0.2em 15%;
+    border:none;
+    border-bottom:1px solid #808080;
+    font-size:1.5em;
+
+}

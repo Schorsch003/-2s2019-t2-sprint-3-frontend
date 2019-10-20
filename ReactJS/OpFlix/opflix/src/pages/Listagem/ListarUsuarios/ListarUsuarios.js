@@ -35,7 +35,7 @@ export default class ListarUsuarios extends Component {
         return (
             <div className="mainListaCat">
                 <Header item1="Favoritos" item2={this.state.username} />
-                <Titulo titulo="Categorias" />
+                <Titulo titulo="Usuarios" />
                 <table className="tabelaCategorias">
                     <thead>
                         <tr className="tabelaHeader">

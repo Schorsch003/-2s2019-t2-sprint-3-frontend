@@ -3,6 +3,7 @@ import Header from '../../../components/Header/Header';
 import Titulo from '../../../components/Título/Titulo';
 import Footer from '../../../components/Footer/Footer';
 import './CadastroLancamentos.css'
+import Axios from 'axios';
 // import Axios from 'axios';
 
 export default class CadastroLancamento extends Component {
@@ -14,6 +15,13 @@ export default class CadastroLancamento extends Component {
             listaCat: [],
             listaTipo: [],
             listaPlataforma: [],
+            idPlataforma: '',
+            idCategoria: '',
+            idTipo: '',
+            titulo: '',
+            descricao: '',
+            estreia: '',
+            duracao: '',
             erro: ''
         }
     }
@@ -40,15 +48,56 @@ export default class CadastroLancamento extends Component {
 
     recuperarPlats = () => {
         fetch('http://localhost:5000/api/plataformas')
-        .then(x => x.json())
-        .then(x => this.setState({ listaPlataforma: x }))
-        .catch(error => console.log(error));
+            .then(x => x.json())
+            .then(x => this.setState({ listaPlataforma: x }))
+            .catch(error => console.log(error));
     }
 
     changeCategoria = (event) => {
         event.preventDefault();
+        this.setState({ idCategoria: event.target.value })
+    }
 
-        console.log(event.target.value);
+    changeTipo = (event) => {
+        event.preventDefault();
+        this.setState({ idTipo: event.target.value })
+    }
+
+    changePlataforma = (event) => {
+        event.preventDefault();
+        this.setState({ idPlataforma: event.target.value })
+    }
+
+    changeTitulo = (event) => {
+        this.setState({ titulo: event.target.value });
+    }
+
+    changeDescricao = (event) => {
+        this.setState({ descricao: event.target.value });
+    }
+
+    changeEstreia = (event) => {
+        this.setState({ estreia: event.target.value });
+    }
+
+    changeDuracao = (event) => {
+        this.setState({ duracao: event.target.value })
+    }
+
+    cadastrarLancamento = (event) => {
+        event.preventDefault();
+        Axios.post('http://localhost:5000/api/lancamentos', {
+            titulo: this.state.titulo,
+            sinopse: this.state.descricao,
+            idTipo: this.state.idTipo,
+            idCategoria: this.state.idCategoria,
+            dataLancamento: this.state.estreia,
+            tempoDuracao: this.state.duracao,
+            plataforma: this.state.idPlataforma
+        }, {
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
+        })
+            .catch(erro => console.log(erro));
     }
 
 
@@ -75,7 +124,7 @@ export default class CadastroLancamento extends Component {
                                     <option selected disabled> Tipo</option>
                                     {this.state.listaTipo.map(x => {
                                         return (
-                                            <option>{x.nome}</option>
+                                            <option value={x.idTipo}>{x.nome}</option>
                                         );
                                     })}
                                 </select>
@@ -87,14 +136,14 @@ export default class CadastroLancamento extends Component {
                                     <option selected disabled> Plataforma</option>
                                     {this.state.listaPlataforma.map(x => {
                                         return (
-                                            <option>{x.nome}</option>
+                                            <option value={x.idPlataforma}>{x.nome}</option>
                                         );
                                     })}
                                 </select>
                             </div>
                         </div>
-                        <input type="text" className="descricao" placeholder="Descrição" onChange={this.changeDescricao}/>
-                        <input type="submit" value="CADASTRAR" className="submitBtn" onClick={this.cadastrarUsuario} />
+                        <input type="text" className="descricao" placeholder="Descrição" onChange={this.changeDescricao} />
+                        <input type="submit" value="CADASTRAR" className="submitBtn" onClick={this.cadastrarLancamento} />
                     </form>
                     <p className="erro">{this.state.erro}</p>
                 </div>

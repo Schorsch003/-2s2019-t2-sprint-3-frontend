@@ -15,6 +15,7 @@ import ListarUsuarios from './pages/Listagem/ListarUsuarios/ListarUsuarios';
 import ListarLancamentos from './pages/Listagem/ListarLancamentos/ListarLancamentos';
 import CadastroUsuario from './pages/Cadastros/CadastrarUsuarios/CadastroUsuario';
 import CadastroLancamento from './pages/Cadastros/CadastrarLancamentos/CadastroLancamentos';
+import CadastroCategoria from './pages/Cadastros/CadastrarCategorias/CadastroCategorias';
 
 const RotaPrivada = ({ component: Component }) => (
     <Route
@@ -41,6 +42,7 @@ const routing = (
                 <RotaPrivada path="/listarlancamentos" component={ListarLancamentos} />
                 <RotaPrivada path="/cadastrarusuario" component={CadastroUsuario} />
                 <RotaPrivada path="/cadastrarlancamento" component={CadastroLancamento} />
+                <RotaPrivada path="/cadastrarcategoria" component={CadastroCategoria} />
             </Switch>
         </div>
     </Router>

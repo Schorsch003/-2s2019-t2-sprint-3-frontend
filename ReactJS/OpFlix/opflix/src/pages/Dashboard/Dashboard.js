@@ -4,6 +4,7 @@ import Titulo from './../../components/Título/Titulo'
 import Footer from './../../components/Footer/Footer'
 import Lista from './../../components/ListaDashboard/ListaDashboard'
 import './Dashboard.css'
+import { parseJwt } from './../../services/auth';
 
 export default class Dashboard extends Component {
 
@@ -15,9 +16,10 @@ export default class Dashboard extends Component {
         }
     }
 
-    
+
     componentDidMount() {
         this.setWelcomeState();
+        console.log(parseJwt)
     }
 
     setWelcomeState() {
@@ -31,9 +33,9 @@ export default class Dashboard extends Component {
                 <main className="mainDashboard">
                     <Titulo titulo={this.state.stringWelcome} />
                     <div className="listas">
-                        <Lista nome="Lançamentos" listar="/listarlancamentos"/>
-                        <Lista nome="Categorias" listar="/listarcategorias"/>
-                        <Lista nome="Usuários" listar="/listarusuarios"/>
+                        <Lista nome="Lançamentos" listar="/listarlancamentos" cadastrar='/cadastrarlancamento' />
+                        <Lista nome="Categorias" listar="/listarcategorias" cadastrar='/cadastrarcategoria'/>
+                        <Lista nome="Usuários" listar="/listarusuarios" cadastrar='/cadastrarusuario' />
                     </div>
                 </main>
                 <Footer />

@@ -11,19 +11,14 @@ export default class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            stringWelcome: "",
-            username: "Admin"
+            username: ""
         }
     }
 
 
-    componentDidMount() {
-        this.setWelcomeState();
-        console.log(parseJwt)
-    }
-
-    setWelcomeState() {
-        this.setState({ stringWelcome: "Bem Vindo, " + this.state.username })
+    componentDidMount() {   
+        console.log(parseJwt());
+        this.setState({ username: parseJwt().Username.split(' ')[0] })
     }
 
     render() {
@@ -31,10 +26,10 @@ export default class Dashboard extends Component {
             <div>
                 <Header item1="Favoritos" item2={this.state.username} />
                 <main className="mainDashboard">
-                    <Titulo titulo={this.state.stringWelcome} />
+                    <Titulo titulo={'Bem vindo, ' + this.state.username} />
                     <div className="listas">
                         <Lista nome="Lançamentos" listar="/listarlancamentos" cadastrar='/cadastrarlancamento' />
-                        <Lista nome="Categorias" listar="/listarcategorias" cadastrar='/cadastrarcategoria'/>
+                        <Lista nome="Categorias" listar="/listarcategorias" cadastrar='/cadastrarcategoria' />
                         <Lista nome="Usuários" listar="/listarusuarios" cadastrar='/cadastrarusuario' />
                     </div>
                 </main>

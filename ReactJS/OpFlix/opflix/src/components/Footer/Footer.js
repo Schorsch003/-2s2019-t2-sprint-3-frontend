@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logoFace from '../../assets/imgs/facebook-logo.png'
 import logoTwitter from '../../assets/imgs/twitter-logo.png'
 import './Footer.css'
+import { Link } from 'react-router-dom'
 
 
 export default class Footer extends Component {
@@ -13,8 +14,8 @@ export default class Footer extends Component {
                     <p>opflix.contato@email.com</p>
                 </div>
                 <div className="socialFooter">
-                    <a href="https://facebook.com/netflixbrasil" target="#"><img src={logoFace} id="fblogo" alt="Facebook" /></a>
-                    <a href="https://twitter.com/netflixbrasil" target="#"><img src={logoTwitter} id="twitterlogo" alt="Twitter" /></a>
+                    <Link to="https://facebook.com/netflixbrasil" target="#"><img src={logoFace} id="fblogo" alt="Facebook" /></Link>
+                    <Link to="https://twitter.com/netflixbrasil" target="#"><img src={logoTwitter} id="twitterlogo" alt="Twitter" /></Link>
                 </div>
             </footer>
         );

@@ -18,7 +18,7 @@ export default class Favoritos extends Component {
     }
 
     recuperarLancamentos = () => {
-        fetch('http://localhost:5000/api/lancamentos/' + parseJwt().jti)
+        fetch('http://localhost:5000/api/lancamentos/fav/' + parseJwt().jti)
             .then(x => x.json())
             .then(x => this.setState({ lancamentos: x }))
             .catch(error => console.log(error))
@@ -38,7 +38,7 @@ export default class Favoritos extends Component {
                     </select>
                 </div>
                 {this.state.lancamentos.map(x => {
-                    let tipo;
+                    // let tipo;
                     // if (x.idTipoNavigation.nome === 'Filme') {
                     //     tipo = 'min'
                     // } else if (x.idTipoNavigation.nome === 'Série') {

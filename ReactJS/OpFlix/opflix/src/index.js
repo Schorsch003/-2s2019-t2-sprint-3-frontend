@@ -16,6 +16,7 @@ import ListarUsuarios from './pages/Listagem/ListarUsuarios/ListarUsuarios';
 import ListarLancamentos from './pages/Listagem/ListarLancamentos/ListarLancamentos';
 import CadastroUsuario from './pages/Cadastros/CadastrarUsuarios/CadastroUsuario';
 import CadastroLancamento from './pages/Cadastros/CadastrarLancamentos/CadastroLancamentos';
+import AtualizarLancamento from './pages/Cadastros/CadastrarLancamentos/AtualizarLancamentos';
 import CadastroCategoria from './pages/Cadastros/CadastrarCategorias/CadastroCategorias';
 import Favoritos from './pages/Favoritos/Favoritos';
 
@@ -58,6 +59,7 @@ const routing = (
                 <RotaAdmin path="/cadastrarusuario" component={CadastroUsuario} />
                 <RotaAdmin path="/cadastrarlancamento" component={CadastroLancamento} />
                 <RotaAdmin path="/cadastrarcategoria" component={CadastroCategoria} />
+                <RotaAdmin path="/atualizarlancamento" component={AtualizarLancamento} />
             </Switch>
         </div>
     </Router>

@@ -4,14 +4,12 @@ import Titulo from '../../../components/Título/Titulo';
 import Footer from '../../../components/Footer/Footer';
 import './CadastroLancamentos.css'
 import Axios from 'axios';
-// import Axios from 'axios';
 
-export default class CadastroLancamento extends Component {
+export default class AtualizarLancamento extends Component {
 
     constructor() {
         super();
         this.state = {
-            username: "Username",
             listaCat: [],
             listaTipo: [],
             listaPlataforma: [],
@@ -22,7 +20,9 @@ export default class CadastroLancamento extends Component {
             descricao: '',
             estreia: '',
             duracao: '',
-            erro: ''
+            erro: '',
+            lancamentoEncontrado: [],
+            dataRecuperada: ''
         }
     }
 
@@ -30,6 +30,8 @@ export default class CadastroLancamento extends Component {
         this.recuperarCategorias();
         this.recuperarTipos();
         this.recuperarPlats();
+        this.getLancamentoEscolhido();
+
     }
 
     recuperarCategorias = () => {
@@ -77,16 +79,21 @@ export default class CadastroLancamento extends Component {
     }
 
     changeEstreia = (event) => {
-        this.setState({ estreia: event.target.value });
+        let isso = event.target.value;
+        let tempo = isso.split('T')[0];
+        console.log(tempo)
+        this.setState({ estreia: tempo });
     }
 
     changeDuracao = (event) => {
+
         this.setState({ duracao: event.target.value })
     }
 
-    cadastrarLancamento = (event) => {
+    atualizarLancamento = (event) => {
         event.preventDefault();
-        Axios.post('http://localhost:5000/api/lancamentos', {
+        let id = this.state.lancamentoEncontrado.idLancamento;
+        Axios.put('http://localhost:5000/api/lancamentos/' + id, {
             titulo: this.state.titulo,
             sinopse: this.state.descricao,
             idTipo: this.state.idTipo,
@@ -95,55 +102,92 @@ export default class CadastroLancamento extends Component {
             tempoDuracao: this.state.duracao,
             plataforma: this.state.idPlataforma
         }, {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
-        })
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
+            })
+            .then(() => {
+                alert('Lançamento atualizado com sucesso!')
+                this.props.history.push('/listarlancamentos');
+            })
             .catch(erro => console.log(erro));
+
+
     }
 
+    getLancamentoEscolhido = () => {
+        let id = localStorage.getItem('idLancamento')
+        fetch('http://localhost:5000/api/lancamentos/' + id)
+            .then(x => x.json())
+            .then(x => {
+                this.setState({ lancamentoEncontrado: x })
+                this.setState({dataRecuperada: x.dataLancamento.split('T')[0]})
+            });
+        localStorage.removeItem('idLancamento');
+    }
 
 
     render() {
         return (
             <div className="mainCadastroCat">
-                <Header item1="Favoritos" item2={this.state.username} />
+                <Header />
                 <Titulo titulo="Cadastrar Lançamento" />
                 <div className="formInfos">
                     <form method="POST" >
                         <div className="flex">
                             <div className="col col1">
-                                <input type="text" placeholder="Titulo" onChange={this.changeTitulo} />
+                                <input defaultValue={this.state.lancamentoEncontrado.titulo} type="text" placeholder="Titulo" onChange={this.changeTitulo} />
                                 <select onChange={this.changeCategoria}>
-                                    <option selected disabled> Categoria</option>
                                     {this.state.listaCat.map(x => {
-                                        return (
-                                            <option value={x.idCategoria}>{x.nome}</option>
-                                        );
+                                        if (this.state.lancamentoEncontrado.idCategoria === x.idCategoria) {
+                                            return (
+                                                <option selected value={x.idCategoria}>{x.nome}</option>
+                                            );
+                                        } else {
+                                            return (
+                                                <option value={x.idCategoria}>{x.nome}</option>
+                                            );
+                                        }
                                     })}
                                 </select>
                                 <select onChange={this.changeTipo}>
-                                    <option selected disabled> Tipo</option>
+                                    <option disabled> Tipo</option>
                                     {this.state.listaTipo.map(x => {
-                                        return (
-                                            <option value={x.idTipo}>{x.nome}</option>
-                                        );
-                                    })}
+                                        if (this.state.lancamentoEncontrado.idTipo === x.idTipo) {
+                                            return (
+                                                <option selected value={x.idTipo}>{x.nome}</option>
+                                            );
+                                        } else {
+                                            return (
+                                                <option value={x.idTipo}>{x.nome}</option>
+                                            );
+
+                                        }
+                                    })
+                                    }
                                 </select>
                             </div>
                             <div className="col col2">
-                                <input type="number" placeholder="DURAÇÃO(MIN)" onChange={this.changeDuracao} />
-                                <input type="date" placeholder="DATA DE ESTREIA" onChange={this.changeEstreia} />
+                                <input type="number" defaultValue={this.state.lancamentoEncontrado.tempoDuracao} placeholder="DURAÇÃO(MIN)" onChange={this.changeDuracao} />
+                                <input type="date" defaultValue={this.state.dataRecuperada} placeholder="DATA DE ESTREIA" onChange={this.changeEstreia} />
                                 <select onChange={this.changePlataforma}>
-                                    <option selected disabled> Plataforma</option>
                                     {this.state.listaPlataforma.map(x => {
-                                        return (
-                                            <option value={x.idPlataforma}>{x.nome}</option>
-                                        );
+                                        if (this.state.lancamentoEncontrado.plataforma === x.idPlataforma) {
+                                            return (
+                                                <option selected value={x.idPlataforma}>{x.nome}</option>
+                                            );
+                                        } else {
+                                            return (
+                                                <option value={x.idPlataforma}>{x.nome}</option>
+                                            );
+
+                                        }
+                                    })
+
                                     })}
                                 </select>
                             </div>
                         </div>
-                        <input type="text" className="descricao" placeholder="Descrição" onChange={this.changeDescricao} />
-                        <input type="submit" value="CADASTRAR" className="submitBtn" onClick={this.cadastrarLancamento} />
+                        <input type="text" defaultValue={this.state.lancamentoEncontrado.sinopse} className="descricao" placeholder="Descrição" onChange={this.changeDescricao} />
+                        <input type="submit" value="ATUALIZAR" className="submitBtn" onClick={this.atualizarLancamento} />
                     </form>
                     <p className="erro">{this.state.erro}</p>
                 </div>

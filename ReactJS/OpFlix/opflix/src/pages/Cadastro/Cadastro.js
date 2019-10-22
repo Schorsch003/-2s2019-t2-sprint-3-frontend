@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header'
 import './Cadastro.css';
 import imgFundo from './../../assets/imgs/it-cadastro-teste.jpg'
 import Axios from 'axios';
+import { Link } from 'react-router-dom'
 
 export default class Cadastro extends Component {
 
@@ -69,7 +70,7 @@ export default class Cadastro extends Component {
                     </div>
                     <div className="divisoria"></div>
                     <div className="login">
-                        <a href="/" className="voltarAoMain"><p> Voltar ao menu principal </p></a>
+                        <Link to="/" className="voltarAoMain"><p> Voltar ao menu principal </p></Link>
                         <form>
                             <input type="text" placeholder={this.state.itensListaLogin[0]} onChange={this.changeNome} />
                             <input type="date" placeholder={this.state.itensListaLogin[1]} onChange={this.changeDataNasc} />

@@ -29,10 +29,19 @@ export default class ListarLancamentos extends Component {
     removerLancamento = (event) => {
         // console.log(event.target.value);
         Axios.delete('http://localhost:5000/api/lancamentos/' + event.target.value, {
-            headers:{
-                'Authorization': 'Bearer' + localStorage.getItem('usuario-opflix')
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix')
             }
-        });
+        }).then(() => alert('Lancamento removido com sucesso'))
+        window.location.reload();
+
+
+    }
+
+    getItem = (event) => {
+        console.log(event.target.value)
+        localStorage.setItem('idLancamento', event.target.value);
+        this.props.history.push('/atualizarlancamento');
     }
 
 
@@ -53,7 +62,7 @@ export default class ListarLancamentos extends Component {
                             <th className="tabelaInfo">Data de Lancamento</th>
                             <th className="tabelaInfo">Plataforma</th>
                             <th className="tabelaInfo">Editar</th>
-                            <th className="tabelaInfo">X</th>
+                            <th className="tabelaInfo">Remover</th>
                         </tr>
                     </thead>
                     <tbody>{this.state.listaLanc.map(x => {
@@ -70,9 +79,9 @@ export default class ListarLancamentos extends Component {
                                 <td className="nomesTabela">{x.idCategoriaNavigation.nome}</td>
                                 <td className="nomesTabela">{x.idTipoNavigation.nome}</td>
                                 <td className="nomesTabela">{x.tempoDuracao + ' ' + tipoTempo}</td>
-                                <td className="nomesTabela">{x.dataLancamento}</td>
+                                <td className="nomesTabela">{x.dataLancamento.split('T')[0]}</td>
                                 <td className="nomesTabela">{x.plataformaNavigation.nome}</td>
-                                <td className="nomesTabela"><a href="#">E</a></td>
+                                <td className="nomesTabela"><button value={x.idLancamento} onClick={this.getItem}>E </button></td>
                                 <td className="nomesTabela"><button value={x.idLancamento} onClick={this.removerLancamento}>X</button></td>
                             </tr>
                         );

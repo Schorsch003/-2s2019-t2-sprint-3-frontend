@@ -3,6 +3,8 @@ import Header from './../../components/Header/Header'
 import Titulo from './../../components/Título/Titulo'
 import Footer from './../../components/Footer/Footer'
 import './App.css';
+import { parseJwt } from './../../services/auth'
+import Axios from 'axios';
 
 
 class App extends Component {
@@ -11,7 +13,8 @@ class App extends Component {
     super();
     this.state = {
       lancamentos: [],
-      lancamentoBuscado: []
+      lancamentoBuscado: [],
+      lancamentosFav: []
     }
   }
 
@@ -19,6 +22,31 @@ class App extends Component {
 
   componentDidMount() {
     this.recuperarLancamentos();
+    if (localStorage.getItem('usuario-opflix') !== null) {
+      this.recuperarFavoritos();
+    }
+  }
+
+  recuperarFavoritos = () => {
+    fetch('http://localhost:5000/api/lancamentos/fav/' + parseJwt().jti)
+      .then(x => x.json())
+      .then(x => this.setState({ lancamentosFav: x }))
+      .catch(error => console.log(error))
+  }
+
+  adicionarFavorito = (event) => {
+    event.preventDefault();
+    if (localStorage.getItem('usuario-opflix') !== null) {
+      let idLancamento = event.target.value;
+      Axios.post('http://localhost:5000/api/usuarios/fav/' + idLancamento, idLancamento, {
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
+      })
+        .then(() => alert('Lançamento favoritado com sucesso!'))
+        .catch(erro => console.log(erro));
+    } else {
+      alert('É necessário estar logado para favoritar um lançamento');
+      this.props.history.push('/login');
+    }
   }
 
   recuperarLancamentos = () => {
@@ -29,8 +57,6 @@ class App extends Component {
   }
 
   render() {
-    // eslint-disable-next-line 
-    { console.log(this.state.lancamentos) }
     return (
       <div className="appMain" >
         <Header item1="Login" item2="Cadastro" redirectTo1="/login" redirectTo2="/cadastro" />
@@ -54,7 +80,12 @@ class App extends Component {
               <div className="info">
                 <div className="flex tituloLanc">
                   <h3>{x.titulo}</h3>
-                  <button >Favoritar</button>
+                  {(this.state.lancamentosFav.includes(x)) ? (
+                    <button value={x.idLancamento} onClick={this.removerFavorito}>Desfavoritar</button>
+                  ) : (
+                      <button value={x.idLancamento} onClick={this.adicionarFavorito}>Favoritar</button>
+                    )
+                  }
                 </div>
                 <div className="flex divided">
                   <p>Tempo de duração: {x.tempoDuracao} {tipo}</p>

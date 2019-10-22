@@ -3,6 +3,7 @@ import Header from './../../components/Header/Header'
 import './Login.css';
 import Axios from 'axios'
 import imgFundo from './../../assets/imgs/joker-login-teste.jpg'
+import { Link } from 'react-router-dom'
 
 export default class Login extends Component {
 
@@ -56,7 +57,7 @@ export default class Login extends Component {
                         <img src={imgFundo} alt="Joker - 2019" />
                     </div>
                     <div className="login">
-                        <a href="/" className="voltarAoMain"><p> Voltar ao menu principal </p></a>
+                        <Link to="/" className="voltarAoMain"><p> Voltar ao menu principal </p></Link>
                         <form>
                             <input type="text" placeholder={this.state.itensListaLogin[0]} onChange={this.mudarStateEmail} />
                             <input type="password" placeholder={this.state.itensListaLogin[1]} onChange={this.mudarStateSenha} />

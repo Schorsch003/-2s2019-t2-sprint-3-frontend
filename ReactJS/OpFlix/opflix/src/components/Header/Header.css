@@ -39,6 +39,10 @@ ul {
     border-bottom: 1px solid #DBDBDB;
 }
 
+.navItems {
+    margin-right:10em;
+}
+
 .navItems ul {
     background-color:#FFF;    
     display: flex;

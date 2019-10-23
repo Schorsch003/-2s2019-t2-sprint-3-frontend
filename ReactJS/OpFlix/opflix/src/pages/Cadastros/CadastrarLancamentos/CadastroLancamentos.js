@@ -84,6 +84,11 @@ export default class CadastroLancamento extends Component {
         this.setState({ duracao: event.target.value })
     }
 
+    recuperarImg = (event) => {
+        event.preventDefault();
+        
+    }
+
     cadastrarLancamento = (event) => {
         event.preventDefault();
         Axios.post('http://localhost:5000/api/lancamentos', {
@@ -95,8 +100,8 @@ export default class CadastroLancamento extends Component {
             tempoDuracao: this.state.duracao,
             plataforma: this.state.idPlataforma
         }, {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
-        })
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
+            })
             .catch(erro => console.log(erro));
     }
 
@@ -143,6 +148,7 @@ export default class CadastroLancamento extends Component {
                             </div>
                         </div>
                         <input type="text" className="descricao" placeholder="Descrição" onChange={this.changeDescricao} />
+                        <input type="file" onChange={this.recuperarImg} multiple accept='image/*' />
                         <input type="submit" value="CADASTRAR" className="submitBtn" onClick={this.cadastrarLancamento} />
                     </form>
                     <p className="erro">{this.state.erro}</p>

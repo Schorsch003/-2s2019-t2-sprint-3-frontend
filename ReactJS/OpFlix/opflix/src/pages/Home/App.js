@@ -61,12 +61,6 @@ class App extends Component {
       <div className="appMain" >
         <Header item1="Login" item2="Cadastro" redirectTo1="/login" redirectTo2="/cadastro" />
         <Titulo titulo="Lançamentos" />
-        <div className="filtros flex">
-          <input type="text" placeholder="Buscar Lançamentos" onChange={this.getTituloBusca} />
-          <select>
-            <option selected disabled>Filtrar por</option>
-          </select>
-        </div>
         {this.state.lancamentos.map(x => {
           let tipo;
           if (x.idTipoNavigation.nome === 'Filme') {
